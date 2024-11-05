@@ -1,0 +1,11 @@
+zeebe:
+  client:
+    cloud:
+      clientId: workersapp
+      clientSecret: LSWjBkpJavZc4fPiWA4SkijiTBIoIXhk
+      authUrl: http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token
+    broker:
+      grpcAddress: http://localhost:26500
+      restAddress: http://localhost:8080
+    security:
+      plaintext: true
