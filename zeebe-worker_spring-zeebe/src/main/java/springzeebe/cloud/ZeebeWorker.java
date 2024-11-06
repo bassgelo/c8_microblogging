@@ -15,7 +15,7 @@ public class ZeebeWorker {
         SpringApplication.run(ZeebeWorker.class, args);
     }
 
-    @JobWorker(type = "processTwittter_publishMessage")
+    @JobWorker(type = "PublishTweetTask")
     public Map<String, Object> orchestrateSomething(final ActivatedJob job) {
 
         // Do the business logic
@@ -23,7 +23,7 @@ public class ZeebeWorker {
 
         // Probably add some process variables
         HashMap<String, Object> variables = new HashMap<>();
-        variables.put("resultValue", 42);
+        variables.put("example result", 42);
         return variables;
     }
 

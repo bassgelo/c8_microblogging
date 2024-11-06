@@ -36,3 +36,7 @@ Log in with the user ``demo`` and password ``demo``
 
 * We use this SDK library of Camunda: https://docs.camunda.io/docs/8.5/apis-tools/spring-zeebe-sdk/getting-started/
 
+## Base Java Library for Zeebe
+
+* You can also use this library https://docs.camunda.io/docs/8.5/apis-tools/java-client/ instead of the Spring Zeebe Library, the Spring Zeebe Library is in fact a wrapper around the Java Library
+
