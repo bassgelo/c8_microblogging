@@ -17,12 +17,9 @@ public class GeneratorWorker {
         // Generate a random String, with random UUID and convert it to a string
         String generatedString = UUID.randomUUID().toString().replaceAll("[^a-zA-Z0-9]", "");
 
-        System.out.println("generated String: " + generatedString);
-
         // Return generated variable to Zeebe
         HashMap<String, Object> variables = new HashMap<>();
         variables.put("message", generatedString);
         return variables;
     }
-
 }

@@ -1,8 +1,8 @@
 zeebe:
   client:
     cloud:
-      clientId: workersapp
-      clientSecret: LSWjBkpJavZc4fPiWA4SkijiTBIoIXhk
+      clientId: myspringapp
+      clientSecret: Nz48wd8rUmE0CxR1QOjLtW3VSABrmp2a
       authUrl: http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token
     broker:
       grpcAddress: http://localhost:26500

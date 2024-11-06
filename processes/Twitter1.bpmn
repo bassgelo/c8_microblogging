@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0z02sqc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.28.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0">
   <bpmn:collaboration id="Collaboration_095douo">
-    <bpmn:participant id="Participant_1d2trn3" name="X Company" processRef="Process_08ktf83" />
+    <bpmn:participant id="Participant_1d2trn3" name="X Company" processRef="Posting_Process" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_08ktf83" isExecutable="true">
+  <bpmn:process id="Posting_Process" isExecutable="true">
     <bpmn:extensionElements>
       <zeebe:userTaskForm id="UserTaskForm_0t7ah92">{
   "executionPlatform": "Camunda Cloud",
@@ -131,14 +131,6 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=approved = true</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_12i830j" sourceRef="Activity_0d9r54k" targetRef="Event_09yv3h7" />
-    <bpmn:userTask id="Activity_134liif" name="Write Tweet">
-      <bpmn:extensionElements>
-        <zeebe:formDefinition formKey="camunda-forms:bpmn:UserTaskForm_0t7ah92" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_01wg765</bpmn:incoming>
-      <bpmn:incoming>Flow_0wpjbhb</bpmn:incoming>
-      <bpmn:outgoing>Flow_1b784us</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:serviceTask id="Activity_0d9r54k" name="Publish tweet">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="processTwittter_publishMessage" />
@@ -146,14 +138,22 @@
       <bpmn:incoming>Flow_1cor4im</bpmn:incoming>
       <bpmn:outgoing>Flow_12i830j</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Activity_0brkxkn" name="Review Tweet">
+    <bpmn:sequenceFlow id="Flow_0wpjbhb" sourceRef="Gateway_03dt34h" targetRef="Activity_134liif" />
+    <bpmn:serviceTask id="Activity_134liif" name="Write Tweet">
       <bpmn:extensionElements>
-        <zeebe:formDefinition formKey="camunda-forms:bpmn:UserTaskForm_261vg9p" />
+        <zeebe:taskDefinition type="processTwittter_generateMessage" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01wg765</bpmn:incoming>
+      <bpmn:incoming>Flow_0wpjbhb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b784us</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0brkxkn" name="Review Tweet">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="processTwittter_approveMessage" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1b784us</bpmn:incoming>
       <bpmn:outgoing>Flow_0aj5ecm</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0wpjbhb" sourceRef="Gateway_03dt34h" targetRef="Activity_134liif" />
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_095douo">
@@ -188,13 +188,13 @@
           <dc:Bounds x="1087" y="205" width="46" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0f8j7na_di" bpmnElement="Activity_134liif">
-        <dc:Bounds x="310" y="450" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0dzvh8q_di" bpmnElement="Activity_0d9r54k">
         <dc:Bounds x="610" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_17alwz5_di" bpmnElement="Activity_0brkxkn">
+      <bpmndi:BPMNShape id="Activity_0qsq2a6_di" bpmnElement="Activity_134liif">
+        <dc:Bounds x="310" y="450" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dhn2am_di" bpmnElement="Activity_0brkxkn">
         <dc:Bounds x="500" y="680" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_01wg765_di" bpmnElement="Flow_01wg765">
