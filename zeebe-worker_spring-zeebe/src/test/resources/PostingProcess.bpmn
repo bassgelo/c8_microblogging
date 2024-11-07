@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0z02sqc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="d1c3016" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0" camunda:diagramRelationId="b5e3cfe0-0943-4997-b2e9-c4d6b5b01fd6">
+  <bpmn:collaboration id="Collaboration_095douo" name="PostingProcess">
+    <bpmn:participant id="Participant_1d2trn3" name="X Company" processRef="Posting_Process" />
+  </bpmn:collaboration>
+  <bpmn:process id="Posting_Process" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="UserTaskForm_0t7ah92">{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.5.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "d1c3016"
+  },
+  "schemaVersion": 16,
+  "id": "Form_02ytzux",
+  "components": [
+    {
+      "text": "# Write your message",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0l1x3o0",
+        "columns": null
+      },
+      "id": "Field_1g0nt0a"
+    },
+    {
+      "label": "Message to be posted",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0dq9jhk",
+        "columns": null
+      },
+      "id": "Field_03hj83q",
+      "key": "message",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default"
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="UserTaskForm_261vg9p">{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.5.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "d1c3016"
+  },
+  "schemaVersion": 16,
+  "id": "Form_16lqwk1",
+  "components": [
+    {
+      "text": "# Approval",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_19s4rkw",
+        "columns": null
+      },
+      "id": "Field_0prhq44"
+    },
+    {
+      "label": "Message to be posted on social media:",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_152qihe",
+        "columns": null
+      },
+      "id": "Field_1mjbkwt",
+      "key": "message",
+      "readonly": true,
+      "disabled": false
+    },
+    {
+      "text": "do you approve this message to be posted ?\n",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_1unwm7q",
+        "columns": null
+      },
+      "id": "Field_1a9vtu7"
+    },
+    {
+      "label": "",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0sedev9",
+        "columns": 5
+      },
+      "id": "Field_0sa9rz4",
+      "key": "approved",
+      "description": "Click on the field for YES, leave it empty for NO"
+    }
+  ],
+  "type": "default"
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:laneSet id="LaneSet_1csiwpc">
+      <bpmn:lane id="Lane_1hn3lpt" name="Zeebe Worker">
+        <bpmn:flowNodeRef>Event_09yv3h7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0d9r54k</bpmn:flowNodeRef>
+        <bpmn:childLaneSet id="LaneSet_1hmhczk" />
+      </bpmn:lane>
+      <bpmn:lane id="Lane_07ma6dm" name="Employee">
+        <bpmn:flowNodeRef>Gateway_03dt34h</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_WriteTweet_Connector</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0jxkm77" name="Boss">
+        <bpmn:flowNodeRef>Activity_0brkxkn</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:exclusiveGateway id="Gateway_03dt34h" name="message approved?" default="Flow_0wpjbhb">
+      <bpmn:incoming>Flow_0aj5ecm</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cor4im</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0wpjbhb</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_09yv3h7" name="approved">
+      <bpmn:incoming>Flow_12i830j</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_01wg765" sourceRef="StartEvent_1" targetRef="Activity_WriteTweet_Connector" />
+    <bpmn:sequenceFlow id="Flow_1b784us" sourceRef="Activity_WriteTweet_Connector" targetRef="Activity_0brkxkn" />
+    <bpmn:sequenceFlow id="Flow_0aj5ecm" sourceRef="Activity_0brkxkn" targetRef="Gateway_03dt34h" />
+    <bpmn:sequenceFlow id="Flow_1cor4im" name="Yes" sourceRef="Gateway_03dt34h" targetRef="Activity_0d9r54k">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=approved = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_12i830j" sourceRef="Activity_0d9r54k" targetRef="Event_09yv3h7" />
+    <bpmn:sequenceFlow id="Flow_0wpjbhb" name="No" sourceRef="Gateway_03dt34h" targetRef="Activity_WriteTweet_Connector" />
+    <bpmn:serviceTask id="Activity_0d9r54k" name="Publish message">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="PublishTweetTask" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1cor4im</bpmn:incoming>
+      <bpmn:outgoing>Flow_12i830j</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_WriteTweet_Connector" name="Generate Message">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="processTwittter_generateMessage" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01wg765</bpmn:incoming>
+      <bpmn:incoming>Flow_0wpjbhb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b784us</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0brkxkn" name="Approve message">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="processTwittter_approveMessage" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1b784us</bpmn:incoming>
+      <bpmn:outgoing>Flow_0aj5ecm</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_01wg765</bpmn:outgoing>
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmn:message id="Message_35moa86" name="Message_StartBySuperUser" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_095douo">
+      <bpmndi:BPMNShape id="Participant_1d2trn3_di" bpmnElement="Participant_1d2trn3" isHorizontal="true">
+        <dc:Bounds x="129" y="80" width="1071" height="780" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0jxkm77_di" bpmnElement="Lane_0jxkm77" isHorizontal="true">
+        <dc:Bounds x="159" y="640" width="1041" height="220" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_07ma6dm_di" bpmnElement="Lane_07ma6dm" isHorizontal="true">
+        <dc:Bounds x="159" y="350" width="1041" height="290" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1hn3lpt_di" bpmnElement="Lane_1hn3lpt" isHorizontal="true">
+        <dc:Bounds x="159" y="80" width="1041" height="270" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_03dt34h_di" bpmnElement="Gateway_03dt34h" isMarkerVisible="true">
+        <dc:Bounds x="635" y="465" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="713" y="483" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_09yv3h7_di" bpmnElement="Event_09yv3h7">
+        <dc:Bounds x="1092" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1087" y="205" width="46" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ve4da3_di" bpmnElement="Activity_0d9r54k">
+        <dc:Bounds x="610" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0aq03gn_di" bpmnElement="Activity_WriteTweet_Connector">
+        <dc:Bounds x="310" y="450" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oqxjyl_di" bpmnElement="Activity_0brkxkn">
+        <dc:Bounds x="500" y="680" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0bba7mk_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="219" y="472" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01wg765_di" bpmnElement="Flow_01wg765">
+        <di:waypoint x="255" y="490" />
+        <di:waypoint x="310" y="490" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b784us_di" bpmnElement="Flow_1b784us">
+        <di:waypoint x="410" y="490" />
+        <di:waypoint x="440" y="490" />
+        <di:waypoint x="440" y="720" />
+        <di:waypoint x="500" y="720" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0aj5ecm_di" bpmnElement="Flow_0aj5ecm">
+        <di:waypoint x="600" y="720" />
+        <di:waypoint x="660" y="720" />
+        <di:waypoint x="660" y="515" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cor4im_di" bpmnElement="Flow_1cor4im">
+        <di:waypoint x="660" y="465" />
+        <di:waypoint x="660" y="220" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="665" y="403" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12i830j_di" bpmnElement="Flow_12i830j">
+        <di:waypoint x="710" y="180" />
+        <di:waypoint x="1092" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wpjbhb_di" bpmnElement="Flow_0wpjbhb">
+        <di:waypoint x="635" y="490" />
+        <di:waypoint x="540" y="490" />
+        <di:waypoint x="540" y="400" />
+        <di:waypoint x="360" y="400" />
+        <di:waypoint x="360" y="450" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="548" y="442" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

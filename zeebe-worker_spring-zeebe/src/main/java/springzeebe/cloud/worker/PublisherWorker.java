@@ -14,6 +14,7 @@ public class PublisherWorker {
     @Autowired
     private MastodonService mastodonService;
 
+    /*
     @JobWorker(type = "PublishTweetTask")
     public void publishMessage(final ActivatedJob job) {
         String message = (String)job.getVariablesAsMap().get("message");
@@ -23,8 +24,8 @@ public class PublisherWorker {
             throw new RuntimeException(e.getMessage());
         }
     }
+     */
 
-    /*
     @JobWorker(type = "PublishTweetTask")
     public void publishMessage(final ActivatedJob job) {
         String message = (String)job.getVariablesAsMap().get("message");
@@ -34,5 +35,5 @@ public class PublisherWorker {
             throw new ZeebeBpmnError("MASTODON_ERROR", "Message cannot be published", null);
         }
     }
-     */
+
 }

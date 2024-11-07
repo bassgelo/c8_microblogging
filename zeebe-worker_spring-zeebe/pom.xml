@@ -23,7 +23,7 @@
         <dependency>
             <groupId>io.camunda</groupId>
             <artifactId>spring-boot-starter-camunda-sdk</artifactId>
-            <version>8.5.8</version>
+            <version>${camunda-zeebe.version}</version>
         </dependency>
 
         <!-- Spring starters -->
@@ -53,6 +53,21 @@
             <version>1.7.0</version>
         </dependency>
 
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>io.camunda</groupId>
+            <artifactId>zeebe-process-test-extension-testcontainer</artifactId>
+            <version>${camunda-zeebe.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.1</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -69,6 +84,7 @@
         </plugins>
     </build>
 
+    <!-- Repo for the Mastodon dependency -->
     <repositories>
         <repository>
             <id>jitpack.io</id>

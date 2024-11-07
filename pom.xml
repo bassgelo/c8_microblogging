@@ -20,7 +20,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springBoot.version>3.1.12</springBoot.version>
-        <spring-boot-zeebe.version>8.4.8</spring-boot-zeebe.version>
+        <camunda-zeebe.version>8.5.8</camunda-zeebe.version>
     </properties>
 
 </project>

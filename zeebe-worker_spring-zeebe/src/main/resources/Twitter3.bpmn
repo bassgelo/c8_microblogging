@@ -199,7 +199,7 @@
       <bpmn:incoming>Flow_061hnbq</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1uuy7i3" />
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_1o7qabt" name="Review Tweet">
+    <bpmn:userTask id="Activity_1o7qabt" name="Review Message">
       <bpmn:incoming>Flow_008jrcu</bpmn:incoming>
       <bpmn:outgoing>Flow_061hnbq</bpmn:outgoing>
     </bpmn:userTask>

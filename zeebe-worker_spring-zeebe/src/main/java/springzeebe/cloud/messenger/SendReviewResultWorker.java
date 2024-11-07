@@ -12,10 +12,11 @@ public class SendReviewResultWorker {
     @Autowired
     ZeebeClient zeebeClient;
 
+    //Job Worker -> part of my bean that runs automatically in this app
     @JobWorker(type = "processTwittter_sendReviewResult")
     public void startTweetReview(final ActivatedJob job) {
-        // This is delivering the Message to start the new Process and also contains variables necessary for said process
 
+        // This is delivering the Message to start the new Process and also contains variables necessary for said process
         String message = (String)job.getVariablesAsMap().get("message");
         zeebeClient.newPublishMessageCommand()
                 .messageName("ApprovalMessage")
