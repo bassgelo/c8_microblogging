@@ -1,7 +1,7 @@
 # Camunda-C8-Training
 
 Project for learning and working with Camunda 8.
-**This project uses the following versions: **
+**This project uses the following versions:**
 - Camunda 8.5
 - Java 17
 - Spring Zeebe Library 8.5.8 
