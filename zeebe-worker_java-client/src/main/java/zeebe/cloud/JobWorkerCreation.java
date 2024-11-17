@@ -9,7 +9,6 @@ import io.camunda.zeebe.client.api.worker.JobWorker;
 import java.time.Duration;
 import java.util.Scanner;
 
-
 public class JobWorkerCreation {
     public static void main(final String[] args) {
         final String defaultAddress = "localhost:26500";
@@ -56,15 +55,6 @@ public class JobWorkerCreation {
                     return;
                 }
             }
-        }
-    }
-
-    private static class ExampleJobHandler implements JobHandler {
-        @Override
-        public void handle(final JobClient client, final ActivatedJob job) {
-            // here: business logic that is executed with every job
-            System.out.println(job);
-            client.newCompleteCommand(job.getKey()).send().join();
         }
     }
 }
