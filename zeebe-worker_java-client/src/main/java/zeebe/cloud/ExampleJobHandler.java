@@ -12,7 +12,7 @@ public class ExampleJobHandler implements JobHandler {
     @Override
     public void handle(final JobClient client, final ActivatedJob job) {
         // here: business logic that is executed with every job
-        logger.info("Handling job: {}", job);
+        System.out.println("Handling job: " + job);
         client.newCompleteCommand(job.getKey()).send().join();
     }
 }

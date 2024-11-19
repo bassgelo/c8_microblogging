@@ -17,7 +17,7 @@ public class JobWorkerCreation {
         final String jobType = System.getenv().getOrDefault("JOB_TYPE", "foo");
 
         try (final ZeebeClient client = createZeebeClient(defaultAddress, envVarAddress)) {
-            logger.info("Opening job worker.");
+            System.out.println("Opening job worker.");
 
             try (final JobWorker workerRegistration =
                          client
@@ -26,7 +26,7 @@ public class JobWorkerCreation {
                                  .handler(new ExampleJobHandler())
                                  .timeout(Duration.ofSeconds(10))
                                  .open()) {
-                logger.info("Job worker opened and receiving jobs.");
+                System.out.println("Job worker opened and receiving jobs.");
 
                 // run until System.in receives exit command
                 Utility.waitUntilSystemInput("exit");
