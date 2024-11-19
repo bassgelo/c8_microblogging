@@ -23,13 +23,18 @@ public class JobWorkerCreation {
             System.out.println("Opening job workers.");
 
             for (String jobType : jobTypes) {
-                JobWorker workerRegistration = client
-                        .newWorker()
-                        .jobType(jobType)
-                        .handler(getJobHandler(jobType))
-                        .timeout(Duration.ofSeconds(10))
-                        .open();
-                System.out.println("Job worker for job type " + jobType + " opened and receiving jobs.");
+                JobHandler jobHandler = getJobHandler(jobType);
+                if (jobHandler != null) {
+                    JobWorker workerRegistration = client
+                            .newWorker()
+                            .jobType(jobType)
+                            .handler(jobHandler)
+                            .timeout(Duration.ofSeconds(10))
+                            .open();
+                    System.out.println("Job worker for job type " + jobType + " opened and receiving jobs.");
+                } else {
+                    System.out.println("No job handler found for job type " + jobType);
+                }
             }
 
             // run until System.in receives exit command
