@@ -2,35 +2,22 @@ package zeebe.cloud;
 
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.ZeebeClientBuilder;
-import io.camunda.zeebe.client.api.response.ActivatedJob;
-import io.camunda.zeebe.client.api.worker.JobClient;
-import io.camunda.zeebe.client.api.worker.JobHandler;
 import io.camunda.zeebe.client.api.worker.JobWorker;
 import java.time.Duration;
 import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JobWorkerCreation {
+    private static final Logger logger = LoggerFactory.getLogger(JobWorkerCreation.class);
+
     public static void main(final String[] args) {
         final String defaultAddress = "localhost:26500";
-        //TODO Change the following line using this link https://docs.camunda.io/docs/8.5/apis-tools/java-client/#bootstrapping or add the env vars.
         final String envVarAddress = System.getenv("ZEEBE_ADDRESS");
+        final String jobType = System.getenv().getOrDefault("JOB_TYPE", "foo");
 
-        final ZeebeClientBuilder clientBuilder;
-        if (envVarAddress != null) {
-            /* Connect to Camunda Cloud Cluster, assumes that credentials are set in environment variables.
-             * See JavaDoc on class level for details
-             */
-            clientBuilder = ZeebeClient.newClientBuilder().gatewayAddress(envVarAddress);
-        } else {
-            // connect to local deployment; assumes that authentication is disabled
-            clientBuilder = ZeebeClient.newClientBuilder().gatewayAddress(defaultAddress).usePlaintext();
-        }
-
-        final String jobType = "foo";
-
-        try (final ZeebeClient client = clientBuilder.build()) {
-
-            System.out.println("Opening job worker.");
+        try (final ZeebeClient client = createZeebeClient(defaultAddress, envVarAddress)) {
+            logger.info("Opening job worker.");
 
             try (final JobWorker workerRegistration =
                          client
@@ -39,22 +26,21 @@ public class JobWorkerCreation {
                                  .handler(new ExampleJobHandler())
                                  .timeout(Duration.ofSeconds(10))
                                  .open()) {
-                System.out.println("Job worker opened and receiving jobs.");
+                logger.info("Job worker opened and receiving jobs.");
 
                 // run until System.in receives exit command
-                waitUntilSystemInput("exit");
+                Utility.waitUntilSystemInput("exit");
             }
         }
     }
 
-    private static void waitUntilSystemInput(final String exitCode) {
-        try (final Scanner scanner = new Scanner(System.in)) {
-            while (scanner.hasNextLine()) {
-                final String nextLine = scanner.nextLine();
-                if (nextLine.contains(exitCode)) {
-                    return;
-                }
-            }
+    private static ZeebeClient createZeebeClient(String defaultAddress, String envVarAddress) {
+        final ZeebeClientBuilder clientBuilder;
+        if (envVarAddress != null) {
+            clientBuilder = ZeebeClient.newClientBuilder().gatewayAddress(envVarAddress);
+        } else {
+            clientBuilder = ZeebeClient.newClientBuilder().gatewayAddress(defaultAddress).usePlaintext();
         }
+        return clientBuilder.build();
     }
 }
