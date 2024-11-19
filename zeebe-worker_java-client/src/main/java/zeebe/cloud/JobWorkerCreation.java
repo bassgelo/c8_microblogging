@@ -4,12 +4,9 @@ import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.ZeebeClientBuilder;
 import io.camunda.zeebe.client.api.worker.JobWorker;
 import java.time.Duration;
-import java.util.Scanner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class JobWorkerCreation {
-    private static final Logger logger = LoggerFactory.getLogger(JobWorkerCreation.class);
 
     public static void main(final String[] args) {
         final String defaultAddress = "localhost:26500";
