@@ -6,13 +6,13 @@ import io.camunda.zeebe.client.api.worker.JobHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PublishMessageJobHandler implements JobHandler {
-    private static final Logger logger = LoggerFactory.getLogger(PublishMessageJobHandler.class);
+public class GenerateMessageJobHandler implements JobHandler {
+    private static final Logger logger = LoggerFactory.getLogger(GenerateMessageJobHandler.class);
 
     @Override
     public void handle(final JobClient client, final ActivatedJob job) {
-        // here: business logic specific to publishing messages
-        System.out.println("Publishing message: " + job);
+        // here: business logic specific to generating messages
+        System.out.println("Generating message: " + job);
         client.newCompleteCommand(job.getKey()).send().join();
     }
 }
