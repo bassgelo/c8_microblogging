@@ -2,14 +2,11 @@ package zeebe.cloud;
 
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.ZeebeClientBuilder;
+import io.camunda.zeebe.client.api.worker.JobHandler;
 import io.camunda.zeebe.client.api.worker.JobWorker;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 
 public class JobWorkerCreation {
 
@@ -50,12 +47,12 @@ public class JobWorkerCreation {
         return clientBuilder.build();
     }
 
-    private static ExampleJobHandler getJobHandler(String jobType) {
-        Map<String, ExampleJobHandler> jobHandlers = Map.of(
+    private static JobHandler getJobHandler(String jobType) {
+        Map<String, JobHandler> jobHandlers = Map.of(
                 "processTwittter_publishMessage", new PublishMessageJobHandler(),
                 "processTwittter_approveMessage", new ApproveMessageJobHandler(),
                 "processTwittter_generateMessage", new GenerateMessageJobHandler()
         );
-        return jobHandlers.getOrDefault(jobType, new ExampleJobHandler());
+        return jobHandlers.getOrDefault(jobType, null);
     }
 }
