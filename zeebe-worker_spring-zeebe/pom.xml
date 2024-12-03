@@ -15,8 +15,6 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <camunda-zeebe.version>8.6.5</camunda-zeebe.version>
-        <springBoot.version>3.3.3</springBoot.version>
     </properties>
 
     <dependencies>
@@ -32,13 +30,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <version>${springBoot.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${springBoot.version}</version>
         </dependency>
 
         <!-- Since Spring Boot 3.0+ SnakeYAML is optional, so you need to add it manually if your application uses .yml files for configuration -->
