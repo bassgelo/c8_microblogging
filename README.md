@@ -2,22 +2,22 @@
 
 Project for learning and working with Camunda 8.
 **This project uses the following versions:**
-- Camunda 8.5
+- Camunda 8.6
 - Java 17
-- Spring Zeebe Library 8.5.8 
+- Spring Zeebe Library 8.6.5 
 
 ## Getting started
 
 ## Template C8 Architecture
 
-- [This is the architecture of Camunda 8](https://docs.camunda.io/docs/8.5/guides/)
+- [This is the architecture of Camunda 8](https://docs.camunda.io/docs/8.6/guides/)
   - See the image "Camunda Components & Architecture"
 
 ## Camunda 8 Docker Image Installation
 
 The `\Docker` folder already contains the Docker compose and other files necessary to startup the environment. 
 
-[This is the official Camunda documentation for the Docker image](https://docs.camunda.io/docs/8.5/self-managed/setup/deploy/local/docker-compose/)
+[This is the official Camunda documentation for the Docker image](https://docs.camunda.io/docs/8.6/self-managed/setup/deploy/local/docker-compose/)
 
 The `docker-compose-web-modeler.yaml` file uses an image that is stored in one repository protected by username and password.
 The username and password can be obtained by clients that have acquired the `self-managed` option
@@ -49,12 +49,12 @@ Log in with the user ``demo`` and password ``demo``
 
 ## Spring Zeebe Library
 
-* We use this SDK library of Camunda: https://docs.camunda.io/docs/8.5/apis-tools/spring-zeebe-sdk/getting-started/
+* We use this SDK library of Camunda: https://docs.camunda.io/docs/8.6/apis-tools/spring-zeebe-sdk/getting-started/
   ````angular2html
     <dependency>
         <groupId>io.camunda</groupId>
         <artifactId>spring-boot-starter-camunda-sdk</artifactId>
-        <version>8.5.x</version>
+        <version>8.6.5</version>
     </dependency>
   ````
 * This library was released in Autumn 2024 and is maintained by Camunda, it is part of the main github repository https://github.com/camunda/camunda/tree/main/clients/spring-boot-starter-camunda-sdk
@@ -63,12 +63,12 @@ Log in with the user ``demo`` and password ``demo``
 
 ## Java Library (Base project for Spring Zeebe Library)
 
-* You can also use this library https://docs.camunda.io/docs/8.5/apis-tools/java-client/ instead of the Spring Zeebe Library, the Spring Zeebe Library is in fact a wrapper around the Java Library
+* You can also use this library https://docs.camunda.io/docs/8.6/apis-tools/java-client/ instead of the Spring Zeebe Library, the Spring Zeebe Library is in fact a wrapper around the Java Library
     ````angular2html
     <dependency>
       <groupId>io.camunda</groupId>
       <artifactId>zeebe-client-java</artifactId>
-      <version>8.5.x</version>
+      <version>8.6.5</version>
     </dependency>
     ````
 * This library is maintained by Camunda, and it is part of the main github repository https://github.com/camunda/camunda/tree/main/clients/java
@@ -95,5 +95,5 @@ Log in with the user ``demo`` and password ``demo``
     <scope>test</scope>
     </dependency>
     ````
-* Official Camunda documentation: https://docs.camunda.io/docs/8.5/apis-tools/java-client/zeebe-process-test/ 
-* Best pratices for testing: https://docs.camunda.io/docs/8.5/components/best-practices/development/testing-process-definitions/
+* Official Camunda documentation: https://docs.camunda.io/docs/8.6/apis-tools/java-client/zeebe-process-test/ 
+* Best pratices for testing: https://docs.camunda.io/docs/8.6/components/best-practices/development/testing-process-definitions/
