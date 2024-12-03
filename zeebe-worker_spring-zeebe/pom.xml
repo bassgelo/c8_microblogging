@@ -30,11 +30,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <version>${springBoot.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${springBoot.version}</version>
         </dependency>
 
         <!-- Since Spring Boot 3.0+ SnakeYAML is optional, so you need to add it manually if your application uses .yml files for configuration -->

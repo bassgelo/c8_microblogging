@@ -15,7 +15,7 @@ Project for learning and working with Camunda 8.
 
 ## Camunda 8 Docker Image Installation
 
-The `\Docker` folder already contains the Docker compose and other files necessary to startup the environment. 
+The `\Docker` folder already contains the Docker compose and other files necessary to start up the environment. 
 
 [This is the official Camunda documentation for the Docker image](https://docs.camunda.io/docs/8.6/self-managed/setup/deploy/local/docker-compose/)
 
@@ -57,7 +57,7 @@ Log in with the user ``demo`` and password ``demo``
         <version>8.6.5</version>
     </dependency>
   ````
-* This library was released in Autumn 2024 and is maintained by Camunda, it is part of the main github repository https://github.com/camunda/camunda/tree/main/clients/spring-boot-starter-camunda-sdk
+* This library was released in Autumn 2024 and is maintained by Camunda, it is part of the main gitHub repository https://github.com/camunda/camunda/tree/main/clients/spring-boot-starter-camunda-sdk
 * An older version of the above-mentioned library was maintained by the community, and it was archived by the time version 8.5 was released; the old library repository is https://github.com/camunda-community-hub/spring-zeebe, the repo contains valuable documentation for the specific Camunda version `8.5` we use in this project
 * All the code examples using this library can be found in the module `zeebe-worker_spring-zeebe`
 
@@ -71,7 +71,7 @@ Log in with the user ``demo`` and password ``demo``
       <version>8.6.5</version>
     </dependency>
     ````
-* This library is maintained by Camunda, and it is part of the main github repository https://github.com/camunda/camunda/tree/main/clients/java
+* This library is maintained by Camunda, and it is part of the main gitHub repository https://github.com/camunda/camunda/tree/main/clients/java
 * All the code examples using this library can be found in the module `zeebe-worker_java-client`
 
 ## Library for Testing
@@ -96,4 +96,4 @@ Log in with the user ``demo`` and password ``demo``
     </dependency>
     ````
 * Official Camunda documentation: https://docs.camunda.io/docs/8.6/apis-tools/java-client/zeebe-process-test/ 
-* Best pratices for testing: https://docs.camunda.io/docs/8.6/components/best-practices/development/testing-process-definitions/
+* Best practices for testing: https://docs.camunda.io/docs/8.6/components/best-practices/development/testing-process-definitions/
