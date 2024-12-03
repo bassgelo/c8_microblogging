@@ -3,7 +3,7 @@ package springzeebe.cloud.worker;
 import com.sys1yagi.mastodon4j.api.exception.Mastodon4jRequestException;
 import io.camunda.zeebe.client.api.response.ActivatedJob;
 import io.camunda.zeebe.spring.client.annotation.JobWorker;
-import io.camunda.zeebe.spring.client.exception.ZeebeBpmnError;
+import io.camunda.zeebe.spring.common.exception.ZeebeBpmnError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import springzeebe.cloud.services.MastodonService;

@@ -16,7 +16,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <camunda-zeebe.version>8.6.5</camunda-zeebe.version>
-        <springBoot.version>3.2.0</springBoot.version>
+        <springBoot.version>3.3.3</springBoot.version>
     </properties>
 
     <dependencies>
